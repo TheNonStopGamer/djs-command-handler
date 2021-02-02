@@ -1,0 +1,15 @@
+{
+  "name": "djs-command-handler",
+  "version": "1.0.0",
+  "description": "A discord.js command handler module",
+  "main": "build/index.js",
+  "author": "NonStop",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "discord.js": "^12.5.1",
+    "eslint": "^7.19.0",
+    "typescript": "^4.1.3"
+  }
+}
