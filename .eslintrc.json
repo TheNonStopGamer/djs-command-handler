@@ -26,7 +26,7 @@
     ],
     "quotes": [
       "error",
-      "double"
+      "single"
     ],
     "semi": [
       "error",
@@ -35,75 +35,62 @@
     "@typescript-eslint/naming-convention": [
       "error",
       {
-        "selector": "variable",
+        "selector": "default",
         "format": [
           "camelCase"
         ]
+      },
+      {
+        "selector": "variableLike",
+        "format": [
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
+          "private"
+        ],
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
+          "protected"
+        ],
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
+          "public"
+        ],
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "selector": "enumMember",
+        "format": [
+          "PascalCase",
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "selector": "typeLike",
+        "format": [
+          "PascalCase"
+        ],
+        "leadingUnderscore": "forbid"
       }
-      // {
-      //   "selector": "property",
-      //   "format": [
-      //     "camelCase"
-      //   ],
-      //   "modifiers": [
-      //     "private"
-      //   ],
-      //   "leadingUnderscore": "require"
-      // },
-      // {
-      //   "selector": "property",
-      //   "format": [
-      //     "camelCase"
-      //   ],
-      //   "modifiers": [
-      //     "protected"
-      //   ],
-      //   "leadingUnderscore": "require"
-      // },
-      // {
-      //   "selector": "variable",
-      //   "format": [
-      //     "UPPER_CASE"
-      //   ],
-      //   "modifiers": [
-      //     "global",
-      //     "const"
-      //   ]
-      // },
-      // {
-      //   "selector": "variable",
-      //   "format": [
-      //     "camelCase"
-      //   ],
-      //   "modifiers": [
-      //     "private"
-      //   ],
-      //   "leadingUnderscore": "require"
-      // },
-      // {
-      //   "selector": "parameter",
-      //   "format": [
-      //     "camelCase"
-      //   ]
-      // },
-      // {
-      //   "selector": "typeLike",
-      //   "format": [
-      //     "PascalCase"
-      //   ]
-      // },
-      // {
-      //   "selector": "interface",
-      //   "format": [
-      //     "PascalCase"
-      //   ]
-      // },
-      // {
-      //   "selector": "typeLike",
-      //   "format": [
-      //     "PascalCase"
-      //   ]
-      // }
     ],
     "@typescript-eslint/no-unused-vars": "error"
   }

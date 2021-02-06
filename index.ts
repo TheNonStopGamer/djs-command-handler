@@ -1,1 +1,5 @@
-export * from "./src/BaseCommand.js";
+import * as Command from './src/Command/Command.js';
+
+export default {
+  ...Command
+};

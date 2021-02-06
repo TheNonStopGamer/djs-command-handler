@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A discord.js command handler module",
   "main": "build/index.js",
+  "type": "module",
   "author": "NonStop",
   "license": "MIT",
   "devDependencies": {

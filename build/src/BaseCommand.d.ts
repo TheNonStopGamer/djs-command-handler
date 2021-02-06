@@ -1,9 +1,16 @@
 import { PermissionString, Snowflake } from "discord.js";
+export interface PermissionField {
+    roles?: Snowflake[];
+    permissions?: PermissionString[];
+    devTool?: boolean;
+}
 export declare abstract class BaseSubCommandGroup {
     abstract readonly subCommands: Array<BaseSubCommand>;
+    abstract readonly permissions: PermissionField;
 }
 export declare abstract class BaseSubCommand {
     abstract readonly options: Array<BaseCommandOption>;
+    abstract readonly permissions: PermissionField;
 }
 export declare enum CommandOptionType {
     STRING = 3,
@@ -25,11 +32,6 @@ export declare const enum SubCommandNesting {
     Root = 0,
     SubCommand = 1,
     SubCommandGroup = 2
-}
-export interface PermissionField {
-    roles?: Snowflake[];
-    permissions?: PermissionString[];
-    devTool?: boolean;
 }
 export declare abstract class BaseCommand {
     abstract readonly options: BaseSubCommandGroup[] | BaseSubCommand[] | BaseCommandOption[];
