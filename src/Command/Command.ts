@@ -64,16 +64,22 @@ export class Command {
     return this;
   }
 
+  public addSubCommand(subCommand: SubCommand): Command;
+  public addSubCommand(nameOrSub: string, description: string, execute: CommandExecuteFunction, permissions: PermissionField, options?: CommandOption[]): Command;
   public addSubCommand(
-    name: string,
-    description: string,
-    execute: CommandExecuteFunction,
+    nameOrSub: SubCommand | string,
+    description?: string,
+    execute?: CommandExecuteFunction,
     permissions: PermissionField = { roles: [], permissions: [], devTool: false },
     options?: CommandOption[]
   ): Command {
-    if (this._nesting && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
-    this._nesting = SubCommandNesting.SubCommand;
-    this._options.push(new SubCommand(name, description, execute, permissions, options));
+    if (nameOrSub instanceof SubCommand) {
+      this._options.push(nameOrSub);
+    } else if (typeof nameOrSub === 'string' && description && execute) {
+      if (this._nesting && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
+      this._nesting = SubCommandNesting.SubCommand;
+      this._options.push(new SubCommand(nameOrSub, description, execute, permissions, options));
+    }
     return this;
   }
 
@@ -85,6 +91,3 @@ export class Command {
     return this;
   }
 }
-
-
-

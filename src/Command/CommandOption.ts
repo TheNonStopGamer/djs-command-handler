@@ -52,7 +52,7 @@ export const opt = {
 
     assertAndParse(arg: string): string | undefined {
       const match = arg.match(/#[0-9a-f]{6}/i);
-      return match?.[0] === arg && arg ? (!this.choices ? arg :
+      return match?.[0] === arg ? (!this.choices ? arg :
         (this.choices.some(choice => choice[0].toLowerCase() === arg.toLowerCase()) ? arg.toLowerCase() : undefined)) : undefined;
     }
   },
@@ -68,7 +68,10 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      return arg.match(/(\d+(ms|s|m|h|d)-?)+/i)?.[0] === arg ? arg.toLowerCase().match(/(\d+(ms|s|m|h|d))+/gi)?.join('-') : undefined;
+      const match = arg.match(/(\d+(ms|s|m|h|d)-?)+/i);
+      const parsed = arg.toLowerCase().match(/(\d+(ms|s|m|h|d))+/gi)?.join('-');
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0].toLowerCase() === parsed) ? parsed : undefined)) : undefined;
     }
   },
 
@@ -83,8 +86,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -99,8 +103,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/[+-]?(?=\.\d|\d)\d*\.?\d*(?:[eE][+-]?\d+)?/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -132,7 +137,7 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/(true|false)/i);
+      const match = arg.match(/true|false/i);
       return match?.[0] === arg ? match[0] : undefined;
     }
   },
@@ -149,8 +154,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -166,8 +172,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -183,8 +190,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -200,8 +208,9 @@ export const opt = {
     }
 
     assertAndParse(arg: string): string | undefined {
-      const match = arg.match(/\d+/i);
-      return match?.[0] === arg ? match[0] : undefined;
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -216,13 +225,10 @@ export const opt = {
       super(name, description, OptionType.STRING, { required, choices });
     }
 
-    assert(arg: string): boolean {
-      const match = arg.match(this.filter);
-      return !!match && match[0] === arg;
-    }
-
-    parse(arg: string): string | undefined {
-      return arg.match(this.parser)?.[0];
+    assertAndParse(arg: string): string | undefined {
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   },
 
@@ -237,13 +243,10 @@ export const opt = {
       super(name, description, OptionType.STRING, { required, choices });
     }
 
-    assert(arg: string): boolean {
-      const match = arg.match(this.filter);
-      return !!match && match[0] === arg;
-    }
-
-    parse(arg: string): string | undefined {
-      return arg.match(this.parser)?.[0];
+    assertAndParse(arg: string): string | undefined {
+      const match = arg.match(/\d{17,}/);
+      return match?.[0] === arg ? (!this.choices ? arg :
+        (this.choices.some(choice => choice[0] === arg) ? arg : undefined)) : undefined;
     }
   }
 };
