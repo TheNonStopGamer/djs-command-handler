@@ -26,20 +26,25 @@ export class Command {
     get nesting() {
         return this._nesting;
     }
-    addSubCommandGroup(name, description, permissions = { roles: [], permissions: [], devTool: false }, subCommands) {
+    addSubCommandGroup(nameOrSubGroup, description, subCommands, permissions = { roles: [], permissions: [], devTool: false }) {
         if (this._nesting && this._nesting !== 3 /* SubCommandGroup */)
             throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 3 while nesting level currently is ' + this._nesting);
-        this._nesting = 3 /* SubCommandGroup */;
-        this._options.push(new SubCommandGroup(name, description, permissions, subCommands));
+        if (typeof nameOrSubGroup === 'object') {
+            this._options.push(nameOrSubGroup);
+        }
+        else if (typeof nameOrSubGroup === 'string' && description && subCommands) {
+            this._nesting = 3 /* SubCommandGroup */;
+            this._options.push(new SubCommandGroup(nameOrSubGroup, description, subCommands, permissions));
+        }
         return this;
     }
     addSubCommand(nameOrSub, description, execute, permissions = { roles: [], permissions: [], devTool: false }, options) {
-        if (nameOrSub instanceof SubCommand) {
+        if (this._nesting && this._nesting !== 2 /* SubCommand */)
+            throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
+        if (typeof nameOrSub === 'object') {
             this._options.push(nameOrSub);
         }
         else if (typeof nameOrSub === 'string' && description && execute) {
-            if (this._nesting && this._nesting !== 2 /* SubCommand */)
-                throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
             this._nesting = 2 /* SubCommand */;
             this._options.push(new SubCommand(nameOrSub, description, execute, permissions, options));
         }

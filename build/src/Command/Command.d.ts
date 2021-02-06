@@ -1,4 +1,5 @@
 import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs, Options, Tag } from './Typings.js';
+import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
 export declare class Command {
@@ -20,8 +21,9 @@ export declare class Command {
     get options(): Options | undefined;
     get tags(): Tag[] | string[];
     get nesting(): SubCommandNesting;
-    addSubCommandGroup(name: string, description: string, permissions: PermissionField | undefined, subCommands: SubCommand[]): Command;
+    addSubCommandGroup(subCommandGroup: SubCommandGroup): Command;
+    addSubCommandGroup(name: string, description: string, subCommands: SubCommand[], permissions: PermissionField): Command;
     addSubCommand(subCommand: SubCommand): Command;
-    addSubCommand(nameOrSub: string, description: string, execute: CommandExecuteFunction, permissions: PermissionField, options?: CommandOption[]): Command;
+    addSubCommand(name: string, description: string, execute: CommandExecuteFunction, permissions: PermissionField, options?: CommandOption[]): Command;
     addOption<T extends string | number>(option: CommandOption<T>): Command;
 }

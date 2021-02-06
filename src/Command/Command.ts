@@ -52,40 +52,44 @@ export class Command {
     return this._nesting;
   }
 
+  public addSubCommandGroup(subCommandGroup: SubCommandGroup): Command;
+  public addSubCommandGroup(name: string, description: string, subCommands: SubCommand[], permissions: PermissionField): Command;
   public addSubCommandGroup(
-    name: string,
-    description: string,
-    permissions: PermissionField = { roles: [], permissions: [], devTool: false },
-    subCommands: SubCommand[]
+    nameOrSubGroup: string | SubCommandGroup,
+    description?: string,
+    subCommands?: SubCommand[],
+    permissions: PermissionField = { roles: [], permissions: [], devTool: false }
   ): Command {
     if (this._nesting && this._nesting !== SubCommandNesting.SubCommandGroup) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 3 while nesting level currently is ' + this._nesting);
-    this._nesting = SubCommandNesting.SubCommandGroup;
-    this._options.push(new SubCommandGroup(name, description, permissions, subCommands));
+    if (typeof nameOrSubGroup === 'object') {
+      this._options.push(nameOrSubGroup);
+    } else if (typeof nameOrSubGroup === 'string' && description && subCommands) {
+      this._nesting = SubCommandNesting.SubCommandGroup;
+      this._options.push(new SubCommandGroup(nameOrSubGroup, description, subCommands, permissions));
+    }
     return this;
   }
 
   public addSubCommand(subCommand: SubCommand): Command;
-  public addSubCommand(nameOrSub: string, description: string, execute: CommandExecuteFunction, permissions: PermissionField, options?: CommandOption[]): Command;
+  public addSubCommand(name: string, description: string, execute: CommandExecuteFunction, permissions: PermissionField, options?: CommandOption[]): Command;
   public addSubCommand(
-    nameOrSub: SubCommand | string,
+    nameOrSub: string | SubCommand,
     description?: string,
     execute?: CommandExecuteFunction,
     permissions: PermissionField = { roles: [], permissions: [], devTool: false },
     options?: CommandOption[]
   ): Command {
-    if (nameOrSub instanceof SubCommand) {
+    if (this._nesting && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
+    if (typeof nameOrSub === 'object') {
       this._options.push(nameOrSub);
     } else if (typeof nameOrSub === 'string' && description && execute) {
-      if (this._nesting && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
       this._nesting = SubCommandNesting.SubCommand;
       this._options.push(new SubCommand(nameOrSub, description, execute, permissions, options));
     }
     return this;
   }
 
-  public addOption<T extends string | number>(
-    option: CommandOption<T>
-  ): Command {
+  public addOption<T extends string | number>(option: CommandOption<T>): Command {
     if (this._nesting && this._nesting !== SubCommandNesting.Root) throw new Error('Incorrect nesting, tried to add a Option of nesting level 1 while nesting level currently is ' + this._nesting);
     this._options.push(option);
     return this;

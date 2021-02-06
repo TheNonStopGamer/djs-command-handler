@@ -1,9 +1,9 @@
 export class SubCommandGroup {
-    constructor(name, description, permissions, subCommands) {
+    constructor(name, description, subCommands, permissions) {
         this.name = name;
         this.description = description;
-        this.permissions = permissions;
         this.subCommands = subCommands;
+        this.permissions = permissions;
     }
 }
 //# sourceMappingURL=SubCommandGroup.js.map
