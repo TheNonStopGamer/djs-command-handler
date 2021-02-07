@@ -1,4 +1,4 @@
-import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs, Options, Tag } from './Typings.js';
+import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs, Options, Tag, Category } from './Typings.js';
 import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
@@ -6,11 +6,11 @@ import { CommandOption } from './CommandOption.js';
 export class Command {
   public readonly name: string;
   public readonly description: string;
-  public readonly category: string;
+  public readonly category: Category;
 
-  private _tags: Tag[] | string[];
+  private _tags: Tag[];
 
-  public readonly permissions: PermissionField;
+  public readonly permField: PermissionField;
 
   private _options: Options = [];
   private _nesting: SubCommandNesting = SubCommandNesting.Root;
@@ -18,15 +18,17 @@ export class Command {
   public readonly execute?: CommandExecuteFunction;
 
   /**
-   * @param name The name of the command, will be the first argument for executing it
+   * Creates a command object, this can be used as both a slash command and a regular command
+   * 
+   * @param name The name of the command, will be the first argument for executing the command
    * @param description The description of the command, will be shown in the help menu and will be shown when used as slash command
-   * @param config Tags are used to distinguish command groups, only used by the developer to for example post all slash commands with a certain tag to a guild. The category will decide where the command will show up under in the help menu. Permissions decide which users will be able to use the command, users with any of these permissions or roles will have access to the command.
+   * @param config Tags are used to distinguish command groups, only used by the developer to for example post all slash commands with a certain tag. The category will decide where the command will show up under in the help menu. Permissions decide which users will be able to use the command, users with any of these permissions or any of these roles will have access to the command.
    * @param execute Only necessary when this command has no subcommands, otherwise it will not be used
    */
   constructor(
     name: string,
     description: string,
-    { category, tags = [], permissions = { roles: [], permissions: [], devTool: false } }: CommandArgs,
+    { category, tags = [], permField = { roles: [], permissions: [], devTool: false } }: CommandArgs,
     execute?: CommandExecuteFunction
   ) {
     this.name = name;
@@ -35,7 +37,8 @@ export class Command {
 
     this._tags = tags;
 
-    this.permissions = permissions;
+    if (permField.roles)
+      this.permField = permissions;
 
     this.execute = execute;
   }
@@ -44,7 +47,7 @@ export class Command {
     return this._options;
   }
 
-  get tags(): Tag[] | string[] {
+  get tags(): Tag[] {
     return this._tags;
   }
 

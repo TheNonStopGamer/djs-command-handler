@@ -33,8 +33,8 @@ export const enum SubCommandNesting {
 
 export interface CommandArgs {
   permissions?: PermissionField,
-  tags?: Tag[] | string[],
-  category: string
+  tags?: Tag[],
+  category: Category,
 }
 
 export interface OptionArgs<T extends string | number = string | number> {
@@ -44,7 +44,11 @@ export interface OptionArgs<T extends string | number = string | number> {
 
 export type Options = SubCommandGroup[] & SubCommand[] & CommandOption[];
 
-export type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | 'production' | 'devtool' | 'scope-1' | 'scope-2' | 'scope-3' | 'scope-4' | 'scope-5';
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | 'production' | 'devtool' | 'scope-1' | 'scope-2' | 'scope-3' | 'scope-4' | 'scope-5' | (string & {});
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Category = 'Moderation' | 'Economy' | 'General' | 'Fun' | 'Misc' | 'Info' | 'Management' | (string & {});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CommandExecuteFunction = (...args: any[]) => void;
