@@ -8,24 +8,24 @@
 # 1. Components
 
 ## 1.1. Typings
-- [ ] <U>Client api and ws</U>
+- [X] <U>Client api and ws</U>
 - [ ] <U>Interaction</U>
-- [ ] <U>Command</U>
+- [X] <U>Command</U>
 - [ ] <U>Responses</U>
 
 ## 1.2. Command Handler
 - [ ] <U>SlashCommand handling</U>
 - [ ] <U>Command handling</U>
-- [ ] <U>Event emitter</U>
+- [X] <U>Event emitter</U>
 - [ ] <U>Command help message generation</U>
 - [ ] <U>Command list for custom help messages/parsing</U>
 - [ ] <U>Direct SubCommand execution</U>
 
 ## 1.3. Command
 - [X] <U>Name, description and config</U>
-- [ ] <U>SubCommand, SubCommandGroup</U>
-- [ ] <U>Options and choices</U>
-- [ ] <U>Typings</U>
+- [X] <U>SubCommand, SubCommandGroup</U>
+- [X] <U>Options and choices</U>
+- [X] <U>Typings</U>
 - [X] <U>Permissions, Whitelisted Roles, DevTool</U>
 
 ## 1.4. Menu
