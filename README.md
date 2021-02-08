@@ -9,9 +9,9 @@
 
 ## 1.1. Typings
 - [X] <U>Client api and ws</U>
-- [-] <U>Interaction</U>
+- [X] <U>Interaction</U>
 - [X] <U>Command</U>
-- [-] <U>Responses</U>
+- [X] <U>Responses</U>
 
 ## 1.2. Command Handler
 - [ ] <U>SlashCommand handling</U>
