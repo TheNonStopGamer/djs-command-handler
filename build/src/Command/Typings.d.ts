@@ -1,4 +1,4 @@
-import { PermissionString, Snowflake } from 'discord.js';
+import { PermissionString, Snowflake, Guild, Channel, GuildMember, Client } from 'discord.js';
 import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
@@ -28,14 +28,15 @@ export declare const enum SubCommandNesting {
     SubCommandGroup = 3
 }
 export interface CommandArgs {
-    permissions?: PermissionField;
-    tags?: Tag[] | string[];
-    category: string;
+    permField?: PermissionField;
+    tags?: Tag[];
+    category: Category;
 }
 export interface OptionArgs<T extends string | number = string | number> {
     required?: boolean;
     choices?: [T, T][];
 }
 export declare type Options = SubCommandGroup[] & SubCommand[] & CommandOption[];
-export declare type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | 'production' | 'devtool' | 'scope-1' | 'scope-2' | 'scope-3' | 'scope-4' | 'scope-5';
-export declare type CommandExecuteFunction = (...args: any[]) => void;
+export declare type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | 'production' | 'devtool' | 'scope-1' | 'scope-2' | 'scope-3' | 'scope-4' | 'scope-5' | (string & {});
+export declare type Category = 'Moderation' | 'Economy' | 'General' | 'Fun' | 'Misc' | 'Info' | 'Management' | (string & {});
+export declare type CommandExecuteFunction = (/*parsed stuffs, */ guild: Guild, channel: Channel, member: GuildMember, client: Client) => void;

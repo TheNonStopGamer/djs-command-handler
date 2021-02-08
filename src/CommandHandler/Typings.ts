@@ -2,8 +2,8 @@ import { Snowflake, Guild, Channel, GuildMember } from 'discord.js';
 import { Command } from '../Command/Command';
 
 export interface CommandHandlerOptions {
-  devRole: Snowflake,
-  prefix: string
+  devRole?: Snowflake,
+  prefix?: string
 }
 
 export interface CommandEvent {

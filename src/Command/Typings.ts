@@ -1,4 +1,4 @@
-import { PermissionString, Snowflake } from 'discord.js';
+import { PermissionString, Snowflake, Guild, Channel, GuildMember, Client } from 'discord.js';
 import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
@@ -32,7 +32,7 @@ export const enum SubCommandNesting {
 }
 
 export interface CommandArgs {
-  permissions?: PermissionField,
+  permField?: PermissionField,
   tags?: Tag[],
   category: Category,
 }
@@ -51,4 +51,4 @@ export type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | '
 export type Category = 'Moderation' | 'Economy' | 'General' | 'Fun' | 'Misc' | 'Info' | 'Management' | (string & {});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CommandExecuteFunction = (...args: any[]) => void;
+export type CommandExecuteFunction = (/*parsed stuffs, */guild: Guild, channel: Channel, member: GuildMember, client: Client) => void;

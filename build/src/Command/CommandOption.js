@@ -11,7 +11,7 @@ export class CommandOption {
 export const opt = {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     String: class String extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -21,7 +21,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Hex: class Hex extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.HEXADECIMAL, { required, choices });
         }
         assertAndParse(arg) {
@@ -32,7 +32,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Time: class Time extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.TIME, { required, choices });
         }
         assertAndParse(arg) {
@@ -44,7 +44,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Server: class Server extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.SERVER_ID, { required, choices });
         }
         assertAndParse(arg) {
@@ -55,7 +55,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Float: class Float extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.FLOAT, { required, choices });
         }
         assertAndParse(arg) {
@@ -66,7 +66,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Int: class Int extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.INTEGER, { required, choices });
         }
         assertAndParse(arg) {
@@ -75,7 +75,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Bool: class Bool extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.BOOLEAN, { required, choices });
         }
         assertAndParse(arg) {
@@ -85,7 +85,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     User: class User extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -96,7 +96,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Channel: class Channel extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -107,7 +107,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     VoiceChannel: class VoiceChannel extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -118,7 +118,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     TextChannel: class TextChannel extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -129,7 +129,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     NewsChannel: class NewsChannel extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {
@@ -140,7 +140,7 @@ export const opt = {
     },
     // eslint-disable-next-line @typescript-eslint/naming-convention
     Role: class Role extends CommandOption {
-        constructor(name, description, { required = true, choices = undefined }) {
+        constructor(name, description, { required = true, choices = undefined } = { required: true, choices: undefined }) {
             super(name, description, OptionType.STRING, { required, choices });
         }
         assertAndParse(arg) {

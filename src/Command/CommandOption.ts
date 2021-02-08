@@ -29,7 +29,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -45,7 +45,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.HEXADECIMAL, { required, choices });
     }
@@ -62,7 +62,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.TIME, { required, choices });
     }
@@ -80,7 +80,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.SERVER_ID, { required, choices });
     }
@@ -97,7 +97,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.FLOAT, { required, choices });
     }
@@ -115,7 +115,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<number>
+      { required = true, choices = undefined }: OptionArgs<number> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.INTEGER, { required, choices });
     }
@@ -131,7 +131,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.BOOLEAN, { required, choices });
     }
@@ -148,7 +148,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -166,7 +166,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -184,7 +184,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -202,7 +202,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -220,7 +220,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
@@ -238,7 +238,7 @@ export const opt = {
     constructor(
       name: string,
       description: string,
-      { required = true, choices = undefined }: OptionArgs<string>
+      { required = true, choices = undefined }: OptionArgs<string> = { required: true, choices: undefined }
     ) {
       super(name, description, OptionType.STRING, { required, choices });
     }
