@@ -9,9 +9,9 @@
 
 ## 1.1. Typings
 - [X] <U>Client api and ws</U>
-- [ ] <U>Interaction</U>
+- [-] <U>Interaction</U>
 - [X] <U>Command</U>
-- [ ] <U>Responses</U>
+- [-] <U>Responses</U>
 
 ## 1.2. Command Handler
 - [ ] <U>SlashCommand handling</U>
@@ -27,6 +27,7 @@
 - [X] <U>Options and choices</U>
 - [X] <U>Typings</U>
 - [X] <U>Permissions, Whitelisted Roles, DevTool</U>
+- [ ] <U>Parsing system</U>
 
 ## 1.4. Menu
 - [ ] <U>Pages</U>
