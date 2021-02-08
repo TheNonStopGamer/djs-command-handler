@@ -10,7 +10,7 @@ export declare abstract class CommandOption<T extends string | number = string |
 }
 export declare const opt: {
     String: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -20,7 +20,7 @@ export declare const opt: {
         };
     };
     Hex: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -30,7 +30,7 @@ export declare const opt: {
         };
     };
     Time: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -40,7 +40,7 @@ export declare const opt: {
         };
     };
     Server: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -50,7 +50,7 @@ export declare const opt: {
         };
     };
     Float: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -60,7 +60,7 @@ export declare const opt: {
         };
     };
     Int: {
-        new (name: string, description: string, { required, choices }: OptionArgs<number>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<number>): {
             assertAndParse(arg: number): number | undefined;
             readonly name: string;
             readonly description: string;
@@ -70,7 +70,7 @@ export declare const opt: {
         };
     };
     Bool: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -80,7 +80,7 @@ export declare const opt: {
         };
     };
     User: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -90,7 +90,7 @@ export declare const opt: {
         };
     };
     Channel: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -100,7 +100,7 @@ export declare const opt: {
         };
     };
     VoiceChannel: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -110,7 +110,7 @@ export declare const opt: {
         };
     };
     TextChannel: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -120,7 +120,7 @@ export declare const opt: {
         };
     };
     NewsChannel: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;
@@ -130,7 +130,7 @@ export declare const opt: {
         };
     };
     Role: {
-        new (name: string, description: string, { required, choices }: OptionArgs<string>): {
+        new (name: string, description: string, { required, choices }?: OptionArgs<string>): {
             assertAndParse(arg: string): string | undefined;
             readonly name: string;
             readonly description: string;

@@ -69,6 +69,39 @@
       {
         "selector": "memberLike",
         "modifiers": [
+          "static",
+          "private"
+        ],
+        "format": [
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
+          "static",
+          "protected"
+        ],
+        "format": [
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
+          "static",
+          "public"
+        ],
+        "format": [
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": [
           "public"
         ],
         "format": [
