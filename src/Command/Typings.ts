@@ -89,3 +89,9 @@ export enum ApplicationCommandOptionType {
   ROLE = 8
 }
 
+export interface CommandHelpData {
+  name: string,
+  description: string,
+  usage: string,
+  category: Category
+}

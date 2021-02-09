@@ -38,6 +38,14 @@ export class Command {
     get nestingLevel() {
         return this._nesting || 1 /* Root */;
     }
+    get helpData() {
+        return {
+            name: this.name,
+            description: this.description,
+            usage: '',
+            category: this.category
+        };
+    }
     addSubCommandGroup(nameOrSubGroup, description, subCommands, permissions = { roles: [], permissions: [], devTool: false }) {
         if (this._nesting && this._nesting !== 3 /* SubCommandGroup */)
             throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 3 while nesting level currently is ' + this._nesting);

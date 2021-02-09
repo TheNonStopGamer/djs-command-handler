@@ -1,4 +1,4 @@
-import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs, Options, Tag, Category } from './Typings.js';
+import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs, Options, Tag, Category, CommandHelpData } from './Typings.js';
 import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
@@ -26,6 +26,7 @@ export declare class Command {
     get tags(): Tag[];
     get nesting(): string;
     get nestingLevel(): SubCommandNesting;
+    get helpData(): CommandHelpData;
     addSubCommandGroup(subCommandGroup: SubCommandGroup): Command;
     addSubCommandGroup(name: string, description: string, subCommands: SubCommand[], permissions?: PermissionField): Command;
     addSubCommand(subCommand: SubCommand): Command;

@@ -71,3 +71,9 @@ export declare enum ApplicationCommandOptionType {
     CHANNEL = 7,
     ROLE = 8
 }
+export interface CommandHelpData {
+    name: string;
+    description: string;
+    usage: string;
+    category: Category;
+}

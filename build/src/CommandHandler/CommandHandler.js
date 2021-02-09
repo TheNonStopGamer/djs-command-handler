@@ -56,7 +56,7 @@ export class CommandHandler extends EventEmitter {
         });
         for (const tag of tags) {
             for (const command of (this._tagIndexedCommands.get(tag) || [])) {
-                client.api.applications(client.user.id).commands.post(command.data);
+                //client.api.applications(client.user.id).commands.post(command.data);
             }
         }
     }
