@@ -5,6 +5,10 @@ import * as SubCommandGroup from './src/Command/SubCommandGroup.js';
 import * as CommandTypings from './src/Command/Typings.js';
 import * as CommandHandler from './src/CommandHandler/CommandHandler.js';
 import * as CommandHandlerTypings from './src/CommandHandler/Typings.js';
+import * as ClientTypings from './src/Typings/Client.js';
+import * as InteractionTypings from './src/Typings/Interaction.js';
+import * as ResponseTypings from './src/Typings/SlashCommand.js';
+import * as SlashCommandTypings from './src/Typings/SlashCommand.js';
 export default {
     ...Command,
     ...CommandOption,
@@ -12,11 +16,14 @@ export default {
     ...SubCommandGroup,
     ...CommandTypings,
     ...CommandHandler,
-    ...CommandHandlerTypings
+    ...CommandHandlerTypings,
+    ...ClientTypings,
+    ...InteractionTypings,
+    ...ResponseTypings,
+    ...SlashCommandTypings
 };
 const commandHandler = new CommandHandler.CommandHandler({ devRole: 'test' });
 await commandHandler.setCommands('./build/test/commands');
-console.log(commandHandler.commands.get('testname')?.nesting);
+console.log(JSON.stringify(commandHandler));
 console.log(JSON.stringify(commandHandler.commands.get('testname')));
-console.log((564859369951461406n >> 1n).toString(2), (564859369951461406n).toString(2));
 //# sourceMappingURL=index.js.map

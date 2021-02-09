@@ -37,14 +37,17 @@
       {
         "selector": "default",
         "format": [
-          "camelCase"
+          "camelCase",
+          "snake_case"
         ]
       },
       {
         "selector": "variableLike",
         "format": [
-          "camelCase"
-        ]
+          "camelCase",
+          "snake_case"
+        ],
+        "leadingUnderscore": "forbid"
       },
       {
         "selector": "memberLike",
@@ -52,7 +55,8 @@
           "private"
         ],
         "format": [
-          "camelCase"
+          "camelCase",
+          "snake_case"
         ],
         "leadingUnderscore": "require"
       },
@@ -62,7 +66,8 @@
           "protected"
         ],
         "format": [
-          "camelCase"
+          "camelCase",
+          "snake_case"
         ],
         "leadingUnderscore": "require"
       },
@@ -105,7 +110,8 @@
           "public"
         ],
         "format": [
-          "camelCase"
+          "camelCase",
+          "snake_case"
         ],
         "leadingUnderscore": "forbid"
       },
@@ -125,6 +131,7 @@
         "leadingUnderscore": "forbid"
       }
     ],
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }

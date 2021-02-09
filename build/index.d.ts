@@ -4,7 +4,11 @@ import * as SubCommand from './src/Command/SubCommand.js';
 import * as SubCommandGroup from './src/Command/SubCommandGroup.js';
 import * as CommandTypings from './src/Command/Typings.js';
 import * as CommandHandler from './src/CommandHandler/CommandHandler.js';
+import * as InteractionTypings from './src/Typings/Interaction.js';
+import * as ResponseTypings from './src/Typings/SlashCommand.js';
 declare const _default: {
+    ApplicationCommandOptionType: typeof ResponseTypings.ApplicationCommandOptionType;
+    InteractionType: typeof InteractionTypings.InteractionType;
     CommandHandler: typeof CommandHandler.CommandHandler;
     OptionType: typeof CommandTypings.OptionType;
     SubCommandNesting: typeof CommandTypings.SubCommandNesting;

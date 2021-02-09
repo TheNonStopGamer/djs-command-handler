@@ -1,6 +1,8 @@
-import { Snowflake, Ckient} from 'discord.js';
+import { Snowflake } from 'discord.js';
+import { InteractionResponseData } from './Response.js';
+import { ApplicationCommandData, ApplicationCommand } from './SlashCommand.js';
 
-declare module "discord.js" {
+declare module 'discord.js' {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   interface Client {
@@ -13,13 +15,13 @@ declare module "discord.js" {
       readonly applications: (id: Snowflake) => {
         guilds: (id: Snowflake) => {
           commands: {
-            get: () => Promise<ApplicationCommand[]> ,
-            post: (command: SlashCommandData) => void;
+            get: () => Promise<ApplicationCommand[]>,
+            post: (command: ApplicationCommandData) => void;
           } & ((id: Snowflake) => { delete: () => void })
         }
         commands: {
           get: () => Promise<ApplicationCommand[]>,
-          post: (command: SlashCommandData) => void;
+          post: (command: ApplicationCommandData) => void;
         } & ((id: Snowflake) => { delete: () => void })
       }
     }
