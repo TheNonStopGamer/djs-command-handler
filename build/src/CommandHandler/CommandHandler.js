@@ -54,7 +54,11 @@ export class CommandHandler extends EventEmitter {
                 }
             }
         });
-        // TODO: Post new commands
+        for (const tag of tags) {
+            for (const command of (this._tagIndexedCommands.get(tag) || [])) {
+                client.api.applications(client.user.id).commands.post(command.data);
+            }
+        }
     }
     postGuildSlashCommands(tags, guild, client) {
         if (!client.user)
@@ -63,11 +67,15 @@ export class CommandHandler extends EventEmitter {
         client.api.applications(client.user?.id).guilds(guild).commands.get().then((commands) => {
             for (const command of commands) {
                 if (!this._commands.has(command.name)) {
-                    client.api.applications(client.user.id).guilds(guild).commands(command.id).delete();
+                    // client.api.applications(client.user!.id).guilds(guild).commands(command.id).delete();
                 }
             }
         });
-        // TODO: Post new commands
+        for (const tag of tags) {
+            for (const command of (this._tagIndexedCommands.get(tag) || [])) {
+                // client.api.applications(client.user.id).guilds(guild).commands.post(command.data);
+            }
+        }
     }
     get helpMenuData() {
         return this._helpMenuData;
