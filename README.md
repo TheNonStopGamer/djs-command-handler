@@ -1,7 +1,7 @@
 - [1. So what the fuck is this](#1-so-what-the-fuck-is-this)
   - [1.1 Command Creation](#11-command-creation)
   - [1.2 Handling](#12-handling)
-- [1.3 You said extra features?](#13-you-said-extra-features)
+  - [1.3 You said extra features?](#13-you-said-extra-features)
     - [**Embed-sites**](#embed-sites)
 - [2. Components](#2-components)
   - [1.1. Typings](#11-typings)
@@ -51,7 +51,7 @@ commandHandler.setCommands('./cooomands', true /*(runIndex) this is set by defau
 commandHandler.postGlobalSlashCommands(['foo'], client); // Posts all the commands with the tag 'foo'
 ```
 
-# 1.3 You said extra features?
+## 1.3 You said extra features?
 
 Yes sir I did, it has a reaction menu system and a new thing I am working on...
 
