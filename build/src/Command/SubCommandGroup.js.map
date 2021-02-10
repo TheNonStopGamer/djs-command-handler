@@ -1,1 +1,0 @@
-{"version":3,"file":"SubCommandGroup.js","sourceRoot":"","sources":["../../../src/Command/SubCommandGroup.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,eAAe;IAM1B,YACE,IAAY,EACZ,WAAmB,EACnB,WAAyB,EACzB,WAA6B;QAE7B,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;QACjB,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;QAC/B,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;QAC/B,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;IACjC,CAAC;CACF"}
