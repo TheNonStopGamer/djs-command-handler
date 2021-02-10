@@ -1,14 +1,13 @@
 - [1. So what the fuck is this](#1-so-what-the-fuck-is-this)
-  - [1.1 Command Creation](#11-command-creation)
-  - [1.2 Handling](#12-handling)
-  - [1.3 You said extra features?](#13-you-said-extra-features)
-    - [**Embed-sites**](#embed-sites)
+  - [1.1. Command Creation](#11-command-creation)
+  - [1.2. Handling](#12-handling)
+  - [1.3. You said extra features?](#13-you-said-extra-features)
 - [2. Components](#2-components)
-  - [1.1. Typings](#11-typings)
-  - [1.2. Command Handler](#12-command-handler)
-  - [1.3. Command](#13-command)
-  - [1.4. Menu](#14-menu)
-  - [1.5. Website-embed](#15-website-embed)
+  - [2.1. Typings](#21-typings)
+  - [2.2. Command Handler](#22-command-handler)
+  - [2.3. Command](#23-command)
+  - [2.4. Menu](#24-menu)
+  - [2.5. Website-embed](#25-website-embed)
 
 # 1. So what the fuck is this
 
@@ -16,7 +15,7 @@ Elo mate, this is a command handler with some extra features, the total list of 
 
 Dependencies: `npm install discord.js`
 
-## 1.1 Command Creation
+## 1.1. Command Creation
 
 Command creation is as simple as it sounds, not amazingly simple but better with the library then without.
 
@@ -34,7 +33,7 @@ export default command;
 
 Everything is typed, so it's easy to use (as long as u use an IDE any better than notepad). All the commands can both be used as regular commands, and even as slash commands. The slash commands can be seperately posted by using the tags. The entire slash commands data structure is defined as well, that way (for the typescripters under us) you can also create totally manual and handmade slash commands with type validation
 
-## 1.2 Handling
+## 1.2. Handling
 
 Commands can both be automatically executed, or you can listen to the events of the commands handling. All commands can be set by specifying a directory.
 
@@ -51,11 +50,11 @@ commandHandler.setCommands('./cooomands', true /*(runIndex) this is set by defau
 commandHandler.postGlobalSlashCommands(['foo'], client); // Posts all the commands with the tag 'foo'
 ```
 
-## 1.3 You said extra features?
+## 1.3. You said extra features?
 
 Yes sir I did, it has a reaction menu system and a new thing I am working on...
 
-### **Embed-sites**
+**Embed-sites**
 
 Yeah I know doesn't sound as exciting as you probably expected. It's basically a way of creating a sort of website, in Discord embeds. Sub-pages, forms, selection menu's, toggleable boolean, etc. This could be very useful for example a settings menu.
 
@@ -67,13 +66,13 @@ Ok so yeah i'll be writing more here, but these are the base features of the mod
 
 # 2. Components
 
-## 1.1. Typings
+## 2.1. Typings
 - [X] <U>Client api and ws</U>
 - [X] <U>Interaction</U>
 - [X] <U>Command</U>
 - [X] <U>Responses</U>
 
-## 1.2. Command Handler
+## 2.2. Command Handler
 - [ ] <U>SlashCommand handling</U>
 - [ ] <U>Command handling</U>
 - [X] <U>Command setting</U>
@@ -82,7 +81,7 @@ Ok so yeah i'll be writing more here, but these are the base features of the mod
 - [ ] <U>Command list for custom help messages/parsing</U>
 - [ ] <U>Direct SubCommand execution</U>
 
-## 1.3. Command
+## 2.3. Command
 - [X] <U>Name, description and config</U>
 - [X] <U>SubCommand, SubCommandGroup</U>
 - [X] <U>Options and choices</U>
@@ -91,13 +90,13 @@ Ok so yeah i'll be writing more here, but these are the base features of the mod
 - [X] <U>Help data generation</U>
 - [ ] <U>Parsing system</U>
 
-## 1.4. Menu
+## 2.4. Menu
 - [ ] <U>Pages</U>
 - [ ] <U>Stop</U>
 - [ ] <U>Forward, Backward, Speed Forward, Speed Backward</U>
 - [ ] <U>Index-based</U>
 
-## 1.5. Website-embed
+## 2.5. Website-embed
 - [ ] <U>Main Page</U>
 - [ ] <U>SubPages</U>
 - [ ] <U>Reaction Elements</U>
