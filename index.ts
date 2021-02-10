@@ -31,4 +31,4 @@ const commandHandler = new CommandHandler.CommandHandler({ devRole: 'test' });
 await commandHandler.setCommands('./build/test/commands');
 
 console.log(JSON.stringify(commandHandler));
-console.log(JSON.stringify(commandHandler.commands.get('testname')));
+console.log(JSON.stringify(commandHandler.commands.get('testname')?.helpData));

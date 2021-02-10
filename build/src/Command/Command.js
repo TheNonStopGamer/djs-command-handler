@@ -39,10 +39,37 @@ export class Command {
         return this._nesting || 1 /* Root */;
     }
     get helpData() {
+        let usage = this.name;
+        switch (this._nesting) {
+            case 1: {
+                for (const option of this._options) {
+                    usage += ` <${option.name}>`;
+                }
+                break;
+            }
+            case 2: {
+                usage += ' <';
+                for (const option of this._options) {
+                    usage += option.name + ', ';
+                }
+                usage = usage.slice(0, -2);
+                usage += '>';
+                break;
+            }
+            case 3: {
+                usage += ' <';
+                for (const option of this._options) {
+                    usage += option.name + ', ';
+                }
+                usage = usage.slice(0, -2);
+                usage += '>';
+                break;
+            }
+        }
         return {
             name: this.name,
             description: this.description,
-            usage: '',
+            usage,
             category: this.category
         };
     }

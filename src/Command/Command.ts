@@ -69,10 +69,37 @@ export class Command {
   }
 
   public get helpData(): CommandHelpData {
+    let usage = this.name;
+    switch (this._nesting) {
+      case 1: {
+        for (const option of this._options) {
+          usage += ` <${option.name}>`;
+        }
+        break;
+      }
+      case 2: {
+        usage += ' <';
+        for (const option of this._options) {
+          usage += option.name + ', ';
+        }
+        usage = usage.slice(0, -2);
+        usage += '>';
+        break;
+      }
+      case 3: {
+        usage += ' <';
+        for (const option of this._options) {
+          usage += option.name + ', ';
+        }
+        usage = usage.slice(0, -2);
+        usage += '>';
+        break;
+      }
+    }
     return {
       name: this.name,
       description: this.description,
-      usage: '', // TODO: create the usage stoof
+      usage, // TODO: create the usage stoof
       category: this.category
     };
   }
