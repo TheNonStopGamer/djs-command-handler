@@ -2,6 +2,7 @@ import { PermissionField, CommandExecuteFunction, SubCommandNesting, CommandArgs
 import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
+import { ApplicationCommandData } from '../Typings/SlashCommand.js';
 
 export class Command {
   private static _NESTING_NAMES: string[] = ['Root', 'SubCommand', 'SubCommandGroup'];
@@ -49,6 +50,18 @@ export class Command {
     }
 
     this.execute = execute;
+  }
+
+  get slashCommandData(): ApplicationCommandData {
+    const slashCommand: ApplicationCommandData = {
+      data: {
+        name: this.name,
+        description: this.description,
+        options: this._options.map(opt => opt.slashCommandData)
+      }
+    };
+
+    return slashCommand;
   }
 
   get options(): Options | undefined {

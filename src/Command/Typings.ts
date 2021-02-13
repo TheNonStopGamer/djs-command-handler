@@ -39,7 +39,7 @@ export interface CommandArgs {
 
 export interface OptionArgs<T extends string | number = string | number> {
   required?: boolean,
-  choices?: [T, T][]
+  choices?: [string, T][]
 }
 
 export type Options = SubCommandGroup[] & SubCommand[] & CommandOption[];
@@ -69,13 +69,13 @@ export interface ApplicationCommandOption {
   description: string,
   default?: boolean,
   required?: boolean,
-  choices?: Array<ApplicationCommandOptionChoice>,
-  options?: Array<ApplicationCommandOption>
+  choices?: ApplicationCommandOptionChoice[],
+  options?: ApplicationCommandOption[]
 }
 
-export interface ApplicationCommandOptionChoice {
+export interface ApplicationCommandOptionChoice<T extends string | number = string | number> {
   name: string,
-  value: string | number
+  value: T
 }
 
 export enum ApplicationCommandOptionType {

@@ -13,7 +13,9 @@
 
 Elo mate, this is a command handler with some extra features, the total list of components is [2. Components](#2-components).
 
-Dependencies: `npm install discord.js`
+Dependencies: 
+
+ - `npm install discord.js`
 
 ## 1.1. Command Creation
 
@@ -22,7 +24,9 @@ Command creation is as simple as it sounds, not amazingly simple but better with
 ```ts
 import ch from 'djs-command-handler'; // Or of course require('djs-command-handler');
 
-const command = new ch.Command('name', 'description', { category: 'General', tags: ['foo'], permField: { permissions: ['MANAGE_MESSAGES', 'BE_COOL'/*not a real permission btw*/] } });
+const command = new ch.Command('name', 'description', { category: 'General', tags: ['foo'], permField: { 
+  permissions: ['MANAGE_MESSAGES', 'BE_COOL'] 
+  } });
 
 command.addSubCommand('subcommand', 'le description again', (parsed, guild, channel, member) => {
   channel.send('This is what gets executed, that all happens automatically, but can also be done manually');
