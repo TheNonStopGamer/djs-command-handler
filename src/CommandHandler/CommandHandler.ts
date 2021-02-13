@@ -70,7 +70,7 @@ export class CommandHandler extends EventEmitter {
 
     for (const tag of tags) {
       for (const command of (this._tagIndexedCommands.get(tag) || [])) {
-        //client.api.applications(client.user.id).commands.post(command.data);
+        client.api.applications(client.user.id).commands.post(command.slashCommandData);
       }
     }
   }
@@ -82,14 +82,14 @@ export class CommandHandler extends EventEmitter {
     client.api.applications(client.user?.id).guilds(guild).commands.get().then((commands: any[]) => {
       for (const command of commands) {
         if (!this._commands.has(command.name)) {
-          // client.api.applications(client.user!.id).guilds(guild).commands(command.id).delete();
+          client.api.applications(client.user!.id).guilds(guild).commands(command.id).delete();
         }
       }
     });
 
     for (const tag of tags) {
       for (const command of (this._tagIndexedCommands.get(tag) || [])) {
-        // client.api.applications(client.user.id).guilds(guild).commands.post(command.data);
+        client.api.applications(client.user.id).guilds(guild).commands.post(command.slashCommandData);
       }
     }
   }

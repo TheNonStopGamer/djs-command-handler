@@ -149,7 +149,7 @@ export class Command {
     if (typeof nameOrSub === 'object') {
       this._options.push(nameOrSub);
     } else if (typeof nameOrSub === 'string' && description && execute) {
-      this._options.push(new SubCommand(nameOrSub, description, execute, permissions, options));
+      this._options.push(new SubCommand(nameOrSub, description, options, execute, permissions));
     }
     return this;
   }

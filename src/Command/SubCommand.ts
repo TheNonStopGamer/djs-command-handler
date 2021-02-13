@@ -4,22 +4,22 @@ import { CommandOption } from './CommandOption.js';
 export class SubCommand {
   public readonly name: string;
   public readonly description: string;
+  private _options: CommandOption[];
   public readonly execute: CommandExecuteFunction;
   public readonly permissions: PermissionField;
-  private _options: CommandOption[];
 
   constructor(
     name: string,
     description: string,
+    options: CommandOption[] = [],
     execute: CommandExecuteFunction,
-    permissions: PermissionField = { roles: [], permissions: [], devTool: false },
-    options: CommandOption[] = []
+    permissions: PermissionField = { roles: [], permissions: [], devTool: false }
   ) {
     this.name = name;
     this.description = description;
+    this._options = options;
     this.execute = execute;
     this.permissions = permissions;
-    this._options = options;
   }
 
   public get slashCommandData(): ApplicationCommandOption {
