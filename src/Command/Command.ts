@@ -160,4 +160,15 @@ export class Command {
     this._options.push(option);
     return this;
   }
+
+  public parse(str: string) {
+    const args: string[] = [];
+
+    while (str) {
+      if (str.startsWith('"')) {
+        const index = str.indexOf('"', 1);
+        if (index > 1) args.push();
+      }
+    }
+  }
 }
