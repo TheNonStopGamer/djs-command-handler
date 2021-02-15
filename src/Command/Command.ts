@@ -166,8 +166,13 @@ export class Command {
 
     while (str) {
       if (str.startsWith('"')) {
-        const index = str.indexOf('"', 1);
-        if (index > 1) args.push();
+        const i = str.indexOf('"', 2);
+        if (i > 1) args.push(str.substring(1, i - 1));
+        str = str.substring(0, (i + 1) || 1).trim();
+      } else {
+        const i = str.indexOf(' ', 2);
+        if (i > 1) args.push(str.substring(1, i - 1));
+        str = str.substring(0, (i + 1) || str.length).trim();
       }
     }
   }
