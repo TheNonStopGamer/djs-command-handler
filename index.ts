@@ -14,6 +14,8 @@ import * as InteractionTypings from './src/Typings/Interaction.js';
 import * as ResponseTypings from './src/Typings/SlashCommand.js';
 import * as SlashCommandTypings from './src/Typings/SlashCommand.js';
 
+import * as parse from './src/Utils/parse.js';
+
 export default {
   ...Command,
   ...CommandOption,
@@ -26,7 +28,8 @@ export default {
   ...ClientTypings,
   ...InteractionTypings,
   ...ResponseTypings,
-  ...SlashCommandTypings
+  ...SlashCommandTypings,
+  ...parse
 };
 
 const commandHandler = new CommandHandler.CommandHandler({ devRole: 'test' });

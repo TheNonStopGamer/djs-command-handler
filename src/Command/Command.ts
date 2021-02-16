@@ -3,6 +3,7 @@ import { SubCommandGroup } from './SubCommandGroup.js';
 import { SubCommand } from './SubCommand.js';
 import { CommandOption } from './CommandOption.js';
 import { ApplicationCommandData } from '../Typings/SlashCommand.js';
+import { Interaction } from '../Typings/Interaction.js';
 
 export class Command {
   private static _NESTING_NAMES: string[] = ['Root', 'SubCommand', 'SubCommandGroup'];
@@ -17,7 +18,7 @@ export class Command {
   public readonly noPermsRequired: boolean = false;
 
   private _options: Options = [];
-  private _nesting?: SubCommandNesting;
+  private _nesting: SubCommandNesting = SubCommandNesting.Root;
 
   public readonly execute?: CommandExecuteFunction;
 
@@ -125,7 +126,7 @@ export class Command {
     subCommands?: SubCommand[],
     permissions: PermissionField = { roles: [], permissions: [], devTool: false }
   ): this {
-    if (this._nesting && this._nesting !== SubCommandNesting.SubCommandGroup) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 3 while nesting level currently is ' + this._nesting);
+    if (this._options.length && this._nesting !== SubCommandNesting.SubCommandGroup) throw new Error('Incorrect nesting, tried to add a SubCommandGroup of nesting level \x1b[31m3\x1b[0m while nesting level currently is \x1b[31m' + this._nesting + '\x1b[0m');
     this._nesting = SubCommandNesting.SubCommandGroup;
     if (typeof nameOrSubGroup === 'object') {
       this._options.push(nameOrSubGroup);
@@ -144,7 +145,7 @@ export class Command {
     permissions: PermissionField = { roles: [], permissions: [], devTool: false },
     options?: CommandOption[]
   ): this {
-    if (this._nesting && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level 2 while nesting level currently is ' + this._nesting);
+    if (this._options.length && this._nesting !== SubCommandNesting.SubCommand) throw new Error('Incorrect nesting, tried to add a SubCommand of nesting level \x1b[31m2\x1b[0m while nesting level currently is \x1b[31m' + this._nesting + '\x1b[0m');
     this._nesting = SubCommandNesting.SubCommand;
     if (typeof nameOrSub === 'object') {
       this._options.push(nameOrSub);
@@ -155,25 +156,23 @@ export class Command {
   }
 
   public addOption<T extends string | number>(option: CommandOption<T>): this {
-    if (this._nesting && this._nesting !== SubCommandNesting.Root) throw new Error('Incorrect nesting, tried to add a Option of nesting level 1 while nesting level currently is ' + this._nesting);
+    if (this._options.length && this._nesting !== SubCommandNesting.Root) throw new Error('Incorrect nesting, tried to add a Option of nesting level \x1b[31m1\x1b[0m while nesting level currently is \x1b[31m' + this._nesting + '\x1b[0m');
     this._nesting = SubCommandNesting.Root;
     this._options.push(option);
     return this;
   }
 
-  public parse(str: string) {
-    const args: string[] = [];
+  public parseAndAssertArgs(args: string[]): Record<string, string | number> {
+    const parsed: Record<string, string | number> = {};
 
-    while (str) {
-      if (str.startsWith('"')) {
-        const i = str.indexOf('"', 2);
-        if (i > 1) args.push(str.substring(1, i - 1));
-        str = str.substring(0, (i + 1) || 1).trim();
-      } else {
-        const i = str.indexOf(' ', 2);
-        if (i > 1) args.push(str.substring(1, i - 1));
-        str = str.substring(0, (i + 1) || str.length).trim();
-      }
+    for (let i = 0; i < this._nesting - 1; ++i) {
+      this._options.
     }
+
+    return args;
   }
+
+  // public assertInteraction(interaction: Interaction): Record<string, string | number> {
+
+  // }
 }

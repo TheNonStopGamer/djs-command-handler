@@ -15,6 +15,8 @@ command.addSubCommand(new SubCommand(
   () => { console.log('execootion'); }
 ));
 
+command.addSubCommandGroup('wassaaa', 'reeeeeeeeeeeee', []);
+
 export default command;
 
 console.log(JSON.stringify(command.slashCommandData));
