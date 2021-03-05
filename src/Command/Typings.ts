@@ -1,97 +1,29 @@
-import { PermissionString, Snowflake, Guild, Channel, GuildMember, Client } from 'discord.js';
-import { SubCommandGroup } from './SubCommandGroup.js';
-import { SubCommand } from './SubCommand.js';
-import { CommandOption } from './CommandOption.js';
-
-export interface PermissionField {
-  roles?: Snowflake[],
-  permissions?: PermissionString[],
-  devTool?: boolean
+// SLASH COMMAND TYPINGS
+export interface SlashCommandOption {
+	type: CommandOptionType,
+	name: string,
+	description: string,
+	default?: boolean,
+	required?: boolean,
+	choices?: ApplicationCommandOptionChoice[],
+	options?: ApplicationCommandOption[]
 }
 
+
+
+// COMMAND TYPINGS
 export enum OptionType {
-  STRING = 3,
-  HEXADECIMAL = 3.1,
-  TIME = 3.2,
-  SERVER_ID = 3.4,
-  FLOAT = 3.4,
-  INTEGER = 4,
-  BOOLEAN = 5,
-  USER = 6,
-  CHANNEL = 7,
-  VOICE_CHANNEL = 7.1,
-  TEXT_CHANNEL = 7.2,
-  NEWS_CHANNEL = 7.3,
-  ROLE = 8
-}
-
-export const enum SubCommandNesting {
-  Root = 1,
-  SubCommand = 2,
-  SubCommandGroup = 3
-}
-
-export interface CommandArgs {
-  permField?: PermissionField,
-  tags?: Tag[],
-  category: Category,
-}
-
-export interface OptionArgs<T extends string | number = string | number> {
-  required?: boolean,
-  choices?: [string, T][]
-}
-
-export type Options = SubCommandGroup[] & SubCommand[] & CommandOption[];
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type Tag = 'global' | 'guild' | 'test-guild' | 'staff-guild' | 'beta' | 'production' | 'devtool' | 'scope-1' | 'scope-2' | 'scope-3' | 'scope-4' | 'scope-5' | (string & {});
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type Category = 'Moderation' | 'Economy' | 'General' | 'Fun' | 'Misc' | 'Info' | 'Management' | (string & {});
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CommandExecuteFunction = (/*parsed stuffs, */guild: Guild, channel: Channel, member: GuildMember, client: Client) => void;
-
-export interface SlashCommandData {
-  data: ApplicationCommand
-}
-
-export interface ApplicationCommand {
-  name: string,
-  description: string,
-  options?: Array<ApplicationCommandOption>
-}
-
-export interface ApplicationCommandOption {
-  type: ApplicationCommandOptionType,
-  name: string,
-  description: string,
-  default?: boolean,
-  required?: boolean,
-  choices?: ApplicationCommandOptionChoice[],
-  options?: ApplicationCommandOption[]
-}
-
-export interface ApplicationCommandOptionChoice<T extends string | number = string | number> {
-  name: string,
-  value: T
-}
-
-export enum ApplicationCommandOptionType {
-  SUB_COMMAND = 1,
-  SUB_COMMAND_GROUP = 2,
-  STRING = 3,
-  INTEGER = 4,
-  BOOLEAN = 5,
-  USER = 6,
-  CHANNEL = 7,
-  ROLE = 8
-}
-
-export interface CommandHelpData {
-  name: string,
-  description: string,
-  usage: string,
-  category: Category
+	STRING = 3,
+	HEXADECIMAL = 3.1,
+	TIME = 3.2,
+	SERVER_ID = 3.4,
+	FLOAT = 3.4,
+	INTEGER = 4,
+	BOOLEAN = 5,
+	USER = 6,
+	CHANNEL = 7,
+	VOICE_CHANNEL = 7.1,
+	TEXT_CHANNEL = 7.2,
+	NEWS_CHANNEL = 7.3,
+	ROLE = 8
 }

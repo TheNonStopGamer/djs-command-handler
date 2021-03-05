@@ -1,0 +1,8 @@
+node_modules/
+src/
+docs/
+.eslintignore
+.eslintrc.json
+.gitignore
+package-lock.json
+tsconfig.json
