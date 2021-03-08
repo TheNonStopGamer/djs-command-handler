@@ -1,9 +1,17 @@
-import { CommandOptions } from './Typings.js';
-import { PermissionObject } from 'discord.js';
+import { PermissionResolvable } from 'discord.js';
 
 export class Command {
 	public readonly name: string;
-	public readonly permissions:
-		public options: CommandOptions;
+	public readonly description: string;
+	public readonly permissions?: PermissionResolvable;
 
+	constructor(
+		name: string,
+		description: string,
+		permissions?: PermissionResolvable[],
+	) {
+		this.name = name;
+		this.description = description;
+		this.permissions = permissions;
+	}
 }
