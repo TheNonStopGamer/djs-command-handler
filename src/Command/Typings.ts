@@ -1,12 +1,9 @@
 import { Snowflake } from 'discord.js';
 
 // SLASH COMMAND TYPINGS
-export interface ApplicationCommand {
-	id?: Snowflake,
-	application_id?: Snowflake,
+export interface ApplicationCommandOptionChoice<T extends string | number> {
 	name: string,
-	description: string,
-	options?: ApplicationCommandOption[]
+	value: T
 }
 
 export interface ApplicationCommandOption<T extends string | number = string | number> {
@@ -21,7 +18,7 @@ export interface ApplicationCommandSubCommand {
 	name: string,
 	description: string,
 	type: 1,
-	options?: ApplicationCommandOption[] | ApplicationCommandSubCommand[] | ApplicationCommandSubCommandGroup[]
+	options?: ApplicationCommandOption[]
 }
 
 export interface ApplicationCommandSubCommandGroup {
@@ -31,9 +28,12 @@ export interface ApplicationCommandSubCommandGroup {
 	options?: ApplicationCommandSubCommand[]
 }
 
-export interface ApplicationCommandOptionChoice<T extends string | number> {
+export interface ApplicationCommand {
+	id?: Snowflake,
+	application_id?: Snowflake,
 	name: string,
-	value: T
+	description: string,
+	options?: ApplicationCommandOption[] | ApplicationCommandSubCommand[] | ApplicationCommandSubCommandGroup[]
 }
 
 export enum OptionType {

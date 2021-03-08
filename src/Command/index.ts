@@ -1,2 +1,5 @@
-export * from './Command.js';
-export * from './Typings.js';
+export * from './Command';
+export * from './Option';
+export * from './SubCommand';
+export * from './SubCommandGroup';
+export * from './Typings';
