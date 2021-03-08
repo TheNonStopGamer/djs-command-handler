@@ -1,8 +1,8 @@
 import { PermissionResolvable } from 'discord.js';
-import { Option } from './Option';
-import { SubCommand } from './SubCommand';
-import { SubCommandGroup } from './SubCommandGroup';
-import { ApplicationCommand, ExecuteFunction } from './Typings';
+import { Option } from './Option.js';
+import { SubCommand } from './SubCommand.js';
+import { SubCommandGroup } from './SubCommandGroup.js';
+import { ApplicationCommand, ExecuteFunction } from './Typings.js';
 
 export interface CommandArgs {
 	name: string,

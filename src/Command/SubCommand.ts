@@ -1,5 +1,5 @@
-import { ApplicationCommandSubCommand, ExecuteFunction } from './Typings';
-import { Option } from './Option';
+import { ApplicationCommandSubCommand, ExecuteFunction } from './Typings.js';
+import { Option } from './Option.js';
 
 export class SubCommand implements ApplicationCommandSubCommand {
 	public readonly name: string;

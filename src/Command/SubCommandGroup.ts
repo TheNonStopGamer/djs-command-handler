@@ -1,5 +1,5 @@
-import { ApplicationCommandSubCommandGroup } from './Typings';
-import { SubCommand } from './SubCommand';
+import { ApplicationCommandSubCommandGroup } from './Typings.js';
+import { SubCommand } from './SubCommand.js';
 
 export class SubCommandGroup implements ApplicationCommandSubCommandGroup {
 	public readonly name: string;

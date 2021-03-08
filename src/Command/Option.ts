@@ -1,5 +1,5 @@
 import { Snowflake } from 'discord.js';
-import { ApplicationCommandOption, ApplicationCommandOptionChoice, OptionType as OptionType, Validator } from './Typings';
+import { ApplicationCommandOption, ApplicationCommandOptionChoice, OptionType as OptionType, Validator } from './Typings.js';
 
 const validators = (<M extends { [thingName: string]: Validator }>(things: M) => things)({
 	string: {
