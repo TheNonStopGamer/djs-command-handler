@@ -19,15 +19,24 @@ export class CommandHandler {
 	}
 
 	private async setCommands(directories: PathLike[]): Promise<void> {
+		const commands: Command[] = [];
+
 		for (const directory of directories) {
+			await importDir(directory, commands);
 		}
-		
-		function importDirRecursive(dir: PathLike) {
-			for (const path of readdirSync(dir)) { e x p e c t e d   e r r o r
-				if (path.match(/.+\.js/)?.[0] === path) return void importDirRecursive(`${dir}/${path}`);
+
+		async function importDir(dir: PathLike, output: Command[]): Promise<void> {
+			const commands: Command[] = [];
+
+			for (const path of readdirSync(dir)) {
+				if (path.match(/.+\.js/)?.[0] === path) return void await importDir(`${dir}/${path}`, output);
 				const imported = (await import(`${dir}/${path}`)).default;
-				if (imported instanceof Command) this.commands.set(imported.name, imported);
+				if (imported instanceof Command) commands.push(imported);
 			}
+		}
+
+		for (const command of commands) {
+			this.commands.set(command.name, command);
 		}
 	}
 }
