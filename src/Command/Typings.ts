@@ -55,6 +55,6 @@ export type ExecuteFunction = (...args: unknown[]) => void;
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type AnyStringUnion<T extends string> = T | (string & {});
 
-export type Category = AnyStringUnion<'General' | 'Moderation' | 'Fun' | 'Economy'>;
+export type Category = AnyStringUnion<'General' | 'Moderation' | 'Fun' | 'Economy' | 'Other'>;
 
-export type Tags = AnyStringUnion<'hidden' | 'beta' | 'production' | 'alpha' | 'devtool' | 'deprecated'>[];
+export type Tags = AnyStringUnion<'hidden' | 'beta' | 'production' | 'alpha' | 'devtool' | 'deprecated' | 'all'>[];

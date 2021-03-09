@@ -7,6 +7,7 @@ import { ApplicationCommand, ExecuteFunction, Category, Tags } from './Typings.j
 export interface CommandArgs {
 	name: string,
 	description: string,
+	aliases?: string[],
 	options?: Option[] | SubCommand[] | SubCommandGroup[],
 	execute?: ExecuteFunction,
 	permissions?: PermissionResolvable[],
@@ -23,29 +24,37 @@ export enum Nesting {
 export class Command implements ApplicationCommand {
 	public readonly name: string;
 	public readonly description: string;
+	public readonly aliases?: string[];
 	public readonly options?: Option[] | SubCommand[] | SubCommandGroup[];
 	public readonly execute?: ExecuteFunction;
 	public readonly permissions?: PermissionResolvable[];
-	public readonly category?: Category;
-	public readonly tags?: Tags;
+	public readonly category: Category;
+	public readonly tags: Tags;
 	public readonly nesting: Nesting;
 
 	constructor({
 		name,
 		description,
+		aliases,
 		options,
 		execute,
 		permissions,
-		category,
-		tags
+		category = 'Other',
+		tags = ['all']
 	}: CommandArgs) {
 		this.name = name;
 		this.description = description;
+		this.aliases = aliases;
 		this.options = options;
 		this.nesting = options?.[0] instanceof SubCommandGroup ? Nesting.SUB_COMMAND_GROUP : options?.[0] instanceof SubCommand ? Nesting.SUB_COMMAND : Nesting.ROOT;
 		this.execute = execute;
 		this.permissions = permissions;
 		this.category = category;
-		this.tags = tags;
+		tags.push('all'); this.tags = tags;
 	}
 }
+
+new Command({
+	name: '',
+	description: ''
+});
