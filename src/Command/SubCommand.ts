@@ -1,22 +1,25 @@
-import { ApplicationCommandSubCommand, ExecuteFunction } from './Typings.js';
-import { Option } from './Option.js';
+import { RunFunc } from "../Typings";
+import { Option } from "./Option";
 
-export class SubCommand implements ApplicationCommandSubCommand {
+export class SubCommand {
+	public readonly run: RunFunc;
+
 	public readonly name: string;
 	public readonly description: string;
-	public readonly type: 1 = 1;
-	public readonly options?: Option[];
-	public readonly execute: ExecuteFunction;
+
+	public options: Option[];
 
 	constructor(
 		name: string,
 		description: string,
 		options: Option[],
-		execute: ExecuteFunction
+		run: RunFunc
 	) {
+		this.run = run;
+
 		this.name = name;
 		this.description = description;
+
 		this.options = options;
-		this.execute = execute;
 	}
 }

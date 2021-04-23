@@ -1,11 +1,10 @@
-import { ApplicationCommandSubCommandGroup } from './Typings.js';
-import { SubCommand } from './SubCommand.js';
+import { SubCommand } from './SubCommand';
 
-export class SubCommandGroup implements ApplicationCommandSubCommandGroup {
+export class SubCommandGroup {
 	public readonly name: string;
 	public readonly description: string;
-	public readonly type: 2 = 2;
-	public readonly subCommands?: SubCommand[];
+
+	public readonly subCommands: SubCommand[];
 
 	constructor(
 		name: string,

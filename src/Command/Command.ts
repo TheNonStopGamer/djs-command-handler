@@ -1,60 +1,45 @@
-import { PermissionResolvable } from 'discord.js';
+import { PermissionString } from 'discord.js';
+import { Tag, Category, RunFunc } from '../Typings.js';
 import { Option } from './Option.js';
 import { SubCommand } from './SubCommand.js';
 import { SubCommandGroup } from './SubCommandGroup.js';
-import { ApplicationCommand, ExecuteFunction, Category, Tags } from './Typings.js';
 
-export interface CommandArgs {
-	name: string,
-	description: string,
+export interface CommandOptions {
 	aliases?: string[],
-	options?: Option[] | SubCommand[] | SubCommandGroup[],
-	execute?: ExecuteFunction,
-	permissions?: PermissionResolvable[],
-	category?: Category,
-	tags?: Tags
+	tags?: Tag[],
+	permissions?: PermissionString[]
 }
 
-export enum Nesting {
-	ROOT = 1,
-	SUB_COMMAND = 2,
-	SUB_COMMAND_GROUP = 3
-}
+export type Options = { run: RunFunc, options: Option[] } | SubCommand[] | SubCommandGroup[];
 
-export class Command implements ApplicationCommand {
+export class Command {
+	public readonly run?: RunFunc;
+
 	public readonly name: string;
 	public readonly description: string;
-	public readonly aliases?: string[];
-	public readonly options?: Option[] | SubCommand[] | SubCommandGroup[];
-	public readonly execute?: ExecuteFunction;
-	public readonly permissions?: PermissionResolvable[];
 	public readonly category: Category;
-	public readonly tags: Tags;
-	public readonly nesting: Nesting;
+	public readonly aliases: string[];
+	public readonly tags: Tag[];
 
-	constructor({
-		name,
-		description,
-		aliases,
-		options,
-		execute,
-		permissions,
-		category = 'Other',
-		tags = ['all']
-	}: CommandArgs) {
+	public readonly options: Options;
+
+	public readonly permissions?: PermissionString[];
+
+	constructor(
+		name: string,
+		description: string,
+		category: Category,
+		options: Options,
+		{ aliases = [], tags = [], permissions }: CommandOptions
+	) {
 		this.name = name;
 		this.description = description;
-		this.aliases = aliases;
-		this.options = options;
-		this.nesting = options?.[0] instanceof SubCommandGroup ? Nesting.SUB_COMMAND_GROUP : options?.[0] instanceof SubCommand ? Nesting.SUB_COMMAND : Nesting.ROOT;
-		this.execute = execute;
-		this.permissions = permissions;
 		this.category = category;
-		tags.push('all'); this.tags = tags;
+		this.aliases = aliases;
+		this.tags = tags;
+
+		this.options = options;
+
+		this.permissions = permissions;
 	}
 }
-
-new Command({
-	name: '',
-	description: ''
-});
