@@ -1,41 +1,19 @@
 import { Snowflake } from 'discord.js';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type StringUnion<Literal extends string> = Literal | (string & {});
+export type AnyStringUnion<Literal extends string> = Literal | (string & {});
 
-export type Category = StringUnion<'General' | 'Fun' | 'Economy' | 'Moderation' | 'Misc'>;
+export type Category = AnyStringUnion<'General' | 'Fun' | 'Economy' | 'Moderation' | 'Misc'>;
 
-export type Tag = StringUnion<'Global' | 'Beta' | 'Alpha' | 'Testing' | 'Dev' | 'Scoped' | 'Guild'>;
+export type Tag = AnyStringUnion<'Global' | 'Beta' | 'Alpha' | 'Testing' | 'Dev' | 'Scoped' | 'Guild'>;
 
 export type RunFunc = (...args: unknown[]) => unknown;
 
-declare module 'discord.js' {
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-ignore
-	interface Client {
-		readonly api: {
-			readonly interactions: (id: Snowflake, token: string) => {
-				readonly callback: {
-					readonly post: (responseData: InteractionResponseData) => never;
-				}
-			},
-			readonly applications: (id: Snowflake) => {
-				guilds: (id: Snowflake) => {
-					commands: {
-						get: () => Promise<Array<SlashCommand>>,
-						post: (command: SlashCommand) => void;
-					} & ((id: Snowflake) => { delete: () => void })
-				}
-				commands: {
-					get: () => Promise<Array<SlashCommand>>,
-					post: (command: SlashCommand) => void;
-				} & ((id: Snowflake) => { delete: () => void })
-			}
-		}
-	}
-}
-
 export type ISO8601 = string;
+
+export type Integer = number;
+
+export type Bitfield = number;
 
 export interface SlashCommand {
 	id: Snowflake,
@@ -96,7 +74,7 @@ export interface Interaction {
 	data: SlashCommandInteractionData,
 	guild_id: Snowflake,
 	channel_id: Snowflake,
-	member?: GuildMemberStructure
+	member?: GuildMember
 }
 
 export enum InteractionType {
@@ -112,18 +90,21 @@ export interface SlashCommandInteractionData {
 }
 
 export interface SlashCommandInteractionDataResolved {
-	users?: Record<Snowflake, Record<Snowflake, unknown>>,
-	members?: Record<Snowflake, Record<Snowflake, unknown>>,
-	roles?: Record<Snowflake, Record<Snowflake, unknown>>,
-	channels?: Record<Snowflake, Record<Snowflake, unknown>>
+	users?: Record<Snowflake, Record<Snowflake, User>>,
+	members?: Record<Snowflake, Record<Snowflake, GuildMember>>,
+	roles?: Record<Snowflake, Record<Snowflake, Role>>,
+	channels?: Record<Snowflake, Record<Snowflake, Channel>>
 }
 
 export interface SlashCommandInteractionDataOption {
-
+	name: string,
+	type: SlashCommandOptionType,
+	value?: OptionType,
+	options?: SlashCommandInteractionDataOption[]
 }
 
-export interface GuildMemberStructure {
-	user?: UserStructure,
+export interface GuildMember {
+	user?: User,
 	nick?: string | null,
 	roles: Snowflake[],
 	joined_at: ISO8601,
@@ -134,7 +115,13 @@ export interface GuildMemberStructure {
 	permissions?: string
 }
 
-export interface UserStructure {
+export interface PartialGuildMember {
+	user?: User,
+	deaf: boolean,
+	mute: boolean,
+}
+
+export interface User {
 	id: Snowflake,
 	username: string,
 	discriminator: string,
@@ -145,15 +132,82 @@ export interface UserStructure {
 	locale?: boolean,
 	verified?: boolean,
 	email?: string | null,
-	flags?: number,
-	premium_type?: number,
-	public_flags?: number
+	flags?: Bitfield,
+	premium_type?: PremiumType,
+	public_flags?: Bitfield
 }
 
-export interface RoleStructure {
+export type PremiumType = 0 | 1 | 2;
 
+export interface Role {
+	id: Snowflake,
+	name: string,
+	color: Integer,
+	hoist: boolean,
+	position: Integer,
+	permissions: string,
+	managed: boolean,
+	mentionable: boolean,
+	tags?: RoleTags
 }
 
-export interface ChannelStructure {
+export interface RoleTags {
+	bot_id?: Snowflake,
+	integration_id?: Snowflake,
+	premium_subscriber: null
+}
 
+export interface Channel {
+	id: Snowflake,
+	type: ChannelType,
+	guild_id?: Snowflake,
+	position: Integer,
+	permission_overwrites?: Overwrite[],
+	name?: string,
+	topic?: string | null,
+	nsfw?: boolean,
+	last_message_id?: Snowflake | null,
+	bitrate?: Integer,
+	user_limit?: Integer,
+	rate_limit_per_user?: Integer,
+	recipients?: User[],
+	icon?: string | null,
+	owner_id?: Snowflake,
+	application_id?: Snowflake,
+	parent_id?: Snowflake | null,
+	last_pin_timestamp?: ISO8601 | null,
+	rtc_region?: string | null,
+	video_quality_mode?: VideoQualityMode
+}
+
+export enum VideoQualityMode {
+	AUTO = 1,
+	FULL = 2
+}
+
+export enum ChannelType {
+	GUILD_TEXT = 0,
+	DM = 1,
+	GUILD_VOICE = 2,
+	GROUP_DM = 3,
+	GUILD_CATEGORY = 4,
+	GUILD_NEWS = 5,
+	GUILD_STORE = 6,
+	GUILD_STAGE_VOICE = 13
+}
+
+export interface Overwrite {
+	id: Snowflake,
+	type: OverwriteType,
+	allow: string,
+	deny: string
+}
+
+export type OverwriteType = 0 | 1;
+
+export interface PartialChannel {
+	id: Snowflake,
+	name: string,
+	type: Integer,
+	permission_overwrites?: Overwrite[],
 }
