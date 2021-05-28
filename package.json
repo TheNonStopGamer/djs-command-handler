@@ -1,7 +1,7 @@
 {
 	"name": "discord.js-commands",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A work in progress, this is not close to being finished and should not be cloned",
 	"main": "build/index.js",
 	"scripts": {
 		"test": "node test/index.test.js"
